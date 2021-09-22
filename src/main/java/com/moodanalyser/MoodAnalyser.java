@@ -4,10 +4,12 @@ public class MoodAnalyser {
 
 
 	private String message;
+	public enum errortypes {
+		EMPTY_MOOD_ERROR, NULL_MOOD_ERROR
+	}
 
 	public MoodAnalyser() {
-		this.message = null;
-	}
+			}
 
 	/*
 	 * The method to take in the message via a constructor
@@ -19,17 +21,18 @@ public class MoodAnalyser {
 	/*
 	 * The method to read the message and return Happy or sad
 	 */
-	public String analyseMood() {
+	public String analyseMood() throws MoodAnalyserException {
+
 		try {
-			if (message.contains("Sad"))
+			if (message.length() == 0)
+				throw new MoodAnalyserException(errortypes.EMPTY_MOOD_ERROR.toString());
+			else if (message.contains(("sad"))) {
 				return "SAD";
-			else {
+			} else {
 				return "HAPPY";
 			}
 		} catch (NullPointerException e) {
-			return "HAPPY";
-			// TODO Auto-generated method stub
-
+			throw new MoodAnalyserException(errortypes.NULL_MOOD_ERROR.toString());
 		}
 	}
-}
+	}

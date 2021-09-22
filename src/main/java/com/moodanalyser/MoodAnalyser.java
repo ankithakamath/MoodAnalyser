@@ -2,7 +2,12 @@ package com.moodanalyser;
 
 public class MoodAnalyser {
 
+
 	private String message;
+
+	public MoodAnalyser() {
+		this.message = null;
+	}
 
 	/*
 	 * The method to take in the message via a constructor
@@ -15,12 +20,16 @@ public class MoodAnalyser {
 	 * The method to read the message and return Happy or sad
 	 */
 	public String analyseMood() {
-		if (message.contains("Sad"))
-			return "SAD";
-		else
+		try {
+			if (message.contains("Sad"))
+				return "SAD";
+			else {
+				return "HAPPY";
+			}
+		} catch (NullPointerException e) {
 			return "HAPPY";
-		// TODO Auto-generated method stub
+			// TODO Auto-generated method stub
 
+		}
 	}
-
 }
